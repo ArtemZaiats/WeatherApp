@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText editTextCity;
     private TextView textViewWeather;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(s);
                 String city = jsonObject.getString("name");
                 String temp = jsonObject.getJSONObject("main").getString("temp");
+                String wind = jsonObject.getJSONObject("wind").getString("speed");
                 String description = jsonObject.getJSONArray("weather").getJSONObject(0).getString("description");
-                String weather = String.format("%s\nТемпература: %s\nНа улице: %s", city, temp, description);
+                String weather = String.format("%s\nТемпература: %s °C\nНа улице: %s\nСкорость ветра: %s м\\c", city, temp, description, wind);
                 textViewWeather.setText(weather);
             } catch (JSONException e) {
 
